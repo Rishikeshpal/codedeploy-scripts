@@ -1,1 +1,10 @@
+#!/bin/bash
+
+cd /var/www/html
+
+if ( ! -d "doc"); then
+  mkdir doc
+fi
+
+
 
