@@ -1,1 +1,2 @@
-#!/usr/bin/sh
+#!/bin/bash
+service httpd start
