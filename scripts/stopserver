@@ -1,3 +1,5 @@
-
 #!/bin/bash
-service httpd stop
+App = `grep httpd`
+if [[ -n  $App ]]; then
+    service httpd stop        
+fi
