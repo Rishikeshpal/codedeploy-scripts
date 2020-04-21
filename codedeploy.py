@@ -45,7 +45,7 @@ def deploy_new_revision():
     Deploy a new application revision to AWS CodeDeploy Deployment Group
     """
     try:
-        client = boto3.client('codedeploy')
+        client = boto3.client('codedeploy', config=BOTO3_CONFIG))
     except ClientError as err:
         print("Failed to create boto3 client.\n" + str(err))
         return False
