@@ -5,9 +5,17 @@ from time import strftime, sleep
 import boto3
 from botocore.exceptions import ClientError
 
+
 VERSION_LABEL = strftime("%Y%m%d%H%M%S")
 BUCKET_KEY = os.getenv('APPLICATION_NAME') + '/' + VERSION_LABEL + \
     '-bitbucket_builds.zip'
+DEPLOYMENT_BACKOFF_SECS = 30
+
+BOTO3_CONFIG = Config(
+    retries = dict(
+        max_attempts = 10
+    )
+)
 
 def upload_to_s3(artifact):
     """
