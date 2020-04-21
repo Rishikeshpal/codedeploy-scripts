@@ -86,6 +86,10 @@ def deploy_new_revision():
                 print ("Deployment Failed")
                 return False
             elif (deploymentStatus == 'InProgress') or (deploymentStatus == 'Queued') or (deploymentStatus == 'Created'):
+                deploymentCounter += 1
+                deploymentDelay = (deploymentCounter * DEPLOYMENT_BACKOFF_SECS)
+                print("Deployment " + deploymentStatus + " (Exponential back off " + str(deploymentDelay) + "s)")
+                sleep(deploymentDelay)
                 continue
         except ClientError as err:
             print("Failed to deploy application revision.\n" + str(err))
